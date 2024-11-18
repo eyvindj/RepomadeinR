@@ -27,4 +27,3 @@ ggplot(summary_data, aes(x = Petal.Length, y = Count, fill = Species)) +
     legend.title = "Petal length by species"  
   )
 
-  
