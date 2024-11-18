@@ -26,4 +26,18 @@ ggplot(summary_data, aes(x = Petal.Length, y = Count, fill = Species)) +
   labs(
     legend.title = "Petal length by species"  
   )
-
+head(df)
+ggplot(df, aes(x=Petal.Length, y=Sepal.Width, fill = Species))+
+  geom_smooth()+
+  geom_point()+
+  labs(
+      title = 'Experimental plot',
+      fill  = "Group by species" )+
+        
+  theme(
+      panel.background = element_blank()
+      
+  
+      
+  )
+  
