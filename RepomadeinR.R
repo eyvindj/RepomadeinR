@@ -18,6 +18,13 @@ summary_data <- iris %>%
 
 # Use geom_col() to plot
 ggplot(summary_data, aes(x = Petal.Length, y = Count, fill = Species)) +
-  geom_col()
+  geom_col() +
+  theme(
+    panel.background = element_blank(),  # Removes the background grid
+    legend.title = element_text(size = 12)  # Adjusts the size of the legend title
+  ) +
+  labs(
+    legend.title = "Petal length by species"  
+  )
 
   
