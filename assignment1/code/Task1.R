@@ -9,7 +9,8 @@ library(GGally)
 
 df <- as_tibble(iris)
 
-ggpairs(iris, aes(color = Species))
+pairs <- ggpairs(iris, aes(color = Species))
+
 
 # Summarize the data
 summary_data <- iris %>%
@@ -17,7 +18,7 @@ summary_data <- iris %>%
   summarise(Count = n(), .groups = "drop")
 
 # Use geom_col() to plot
-ggplot(summary_data, aes(x = Petal.Length, y = Count, fill = Species)) +
+column <- ggplot(summary_data, aes(x = Petal.Length, y = Count, fill = Species)) +
   geom_col() +
   theme(
     panel.background = element_blank(),  # Removes the background grid
@@ -27,7 +28,7 @@ ggplot(summary_data, aes(x = Petal.Length, y = Count, fill = Species)) +
     legend.title = "Petal length by species"  
   )
 head(df)
-ggplot(df, aes(x=Petal.Length, y=Sepal.Width, fill = Species))+
+smooth <- ggplot(df, aes(x=Petal.Length, y=Sepal.Width, fill = Species))+
   geom_smooth()+
   geom_point()+
   labs(
@@ -40,4 +41,14 @@ ggplot(df, aes(x=Petal.Length, y=Sepal.Width, fill = Species))+
   
       
   )
-  
+
+plot_list <- list(pairs, column, smooth)
+# Save all plots in the list
+for (i in seq_along(plot_list)) {
+  ggsave(
+    filename = sprintf("assignment1/figures/figure_%d.png", i), # Format file name as figure_1, figure_2, etc.
+    plot = plot_list[[i]], # Access each plot in the list
+    width = 8,
+    height = 6
+  )
+}
